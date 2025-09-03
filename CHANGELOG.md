@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.1.0...v1.1.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* ignore "unclassified" folder correctly+add description of steps in readme ([8448c90](https://github.com/KasperSkytte/snakemake_usearch/commit/8448c90f68ce314698d27eb7481f50e53136fa35))
+* typo ([75bf7e0](https://github.com/KasperSkytte/snakemake_usearch/commit/75bf7e0c4e6261b6bdfa1e07775c373f7ba0391d))
+
 ## [1.1.0](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.0.0...v1.1.0) (2025-08-28)
 
 
