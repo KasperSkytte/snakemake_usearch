@@ -1,6 +1,6 @@
 # This file is for various variables used throughout the workflow.
 # See a description of each setting in the README.md file.
-input_dir: "/raw_data/MD/MD_P081/PacBio/r84150_20250820_115740/demux/barcodes"
+input_dir: ".test/nanopore_run_xyz123/fastq_pass"
 output_dir: "output"
 tmp_dir: "tmp"
 log_dir: "logs"
