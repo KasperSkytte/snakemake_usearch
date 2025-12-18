@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.1.2...v1.2.0) (2025-12-18)
+
+
+### Features
+
+* forgot to add "feat" to to previous commit ([08ed117](https://github.com/KasperSkytte/snakemake_usearch/commit/08ed11705a9a95c082d35a9d8ef2d7ca2f2b2d1c))
+
 ## [1.1.1](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.1.0...v1.1.1) (2025-09-03)
 
 
