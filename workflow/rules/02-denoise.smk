@@ -43,7 +43,7 @@ rule concat_all:
       """
 
 
-rule trim_primers:
+rule cutadapt:
     input:
         os.path.join(
             config["tmp_dir"], "02-denoise", "all_samples_filtered_renamed.fastq"
@@ -57,11 +57,11 @@ rule trim_primers:
             )
         ),
     log:
-        os.path.join(config["log_dir"], "02-denoise", "trim_primers.log"),
+        os.path.join(config["log_dir"], "02-denoise", "cutadapt.log"),
     params:
-        primers=config["primers"],
+        cutadapt_args=config["cutadapt_args"],
     message:
-        "Orienting and trimming reads according to primers"
+        "Orienting and trimming reads using cutadapt"
     resources:
         mem_mb=2048,
         runtime=120,
@@ -77,9 +77,7 @@ rule trim_primers:
         set -euxo pipefail
 
         # this step both orients and trims at once
-        cutadapt -g {params.primers} \
-          --revcomp \
-          -o {output} --discard-untrimmed {input} -j {threads}
+        cutadapt {params.cutadapt_args} -o {output} {input} -j {threads}
 
         # error if output file is empty
         if [ ! -s "{output}" ]; then
@@ -89,7 +87,7 @@ rule trim_primers:
         """
 
 
-# according to Edgar QC filtering should be done here, not in sample_prep
+# according to Edgar, QC filtering should be done here, not in sample_prep
 # rule qc_filter:
 #   shell:
 #     """

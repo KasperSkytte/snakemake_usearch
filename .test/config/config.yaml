@@ -9,7 +9,7 @@ db_sintax: "db_sintax.fa"
 filtlong_args: "--min_length 200 --min_mean_q 90"
 max_threads: 32
 sample_sep: "_"
-primers: "AGRGTTYGATYMTGGCTCAG...GTTTGGCACCTCGATGTCG"
+cutadapt_args: "-g AGRGTTYGATYMTGGCTCAG...GTTTGGCACCTCGATGTCG --revcomp --discard-untrimmed"
 derep_minsize: 1 # for testing set to 1
 unoise_minsize: 1 # for testing set to 1
 rarefy_abund_table: True

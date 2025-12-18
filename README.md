@@ -9,7 +9,7 @@ The following steps are performed in order, see the individual files for additio
 | `01-sample_prep.smk` | `sample_prep` | For each sample, decompress, concatenate all files into one, count reads before filtering, relabel reads using `usearch -fastx_relabel`, run `filtlong`, and count reads after filtering. |
 | | `concatenate_total_reads_files` | Concatenates all files with number of reads before and after filtering in each sample into a single file. |
 | `02-denoise.smk` | `concat_all` | Concatenates all filtered reads from all samples into a single file to be able to generate ASVs/zOTUs. |
-| | `trim_primers` | Trim primers and orient reads using `cutadapt`. |
+| | `cutadapt` | Trim primers and orient reads using `cutadapt`. Any options can be passed on directly to the `cutadapt` command using the `cutadapt_args` config variable for complete customization of this step. |
 | | `derep` | Dereplicate reads using `usearch -fastx_uniques`. |
 | | `unoise` | Generates ASVs/zOTUs using `usearch -unoise3`. |
 | `04-sintax.smk` | `sintax` | Predict taxonomy of the ASVs/zOTUs using `usearch -sintax`. |
