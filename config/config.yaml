@@ -4,7 +4,7 @@ input_dir: ".test/nanopore_run_xyz123/fastq_pass"
 output_dir: "output"
 tmp_dir: "tmp"
 log_dir: "logs"
-db_sintax: "/databases/midas/MiDAS5.3_20240320/FLASVs_w_sintax.fa"
+db_sintax: ".test/db_sintax.fa"
 # to skip filtering altogether set to "--min_length 1"
 filtlong_args: "--min_length 200 --min_mean_q 90"
 max_threads: 32

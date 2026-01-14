@@ -18,13 +18,14 @@ The following steps are performed in order, see the individual files for additio
 | | `rarefy_abund_table` | (optional) Rarefy abundance table using `usearch -otutab_rare`. |
 
 ## Usage
-First install snakemake and the required software into a conda environment or use the container as described below. Then run using fx:
+First install snakemake and the required software into a conda environment (preferably using the [environment.yml](environment.yml) file) or use the container as described below. Then deploy the workflow using [snakedeploy](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/KasperSkytte/snakemake_usearch.html), adjust the [config file](config/README.md), then run, fx:
 ```
 conda activate snakemake_usearch
+snakedeploy deploy-workflow https://github.com/KasperSkytte/snakemake_usearch . --tag v1.2.0
 snakemake --jobs 96
 ```
 
-Use an executor if you are running on a HPC cluster. See the `slurm_submit.sbatch` for an example when running on a SLURM cluster.
+Depending on the size of the data, you can use an executor if you are running on a HPC cluster to optimize utilization by submitting individual tasks as separate jobs. See the `slurm_submit.sbatch` for an example when running on a SLURM cluster.
 
 ## Requirements
 Install the required software by using either the provided `Dockerfile` or `environment.yml` file to build a Docker container or conda environment with all the required tools, see below.
