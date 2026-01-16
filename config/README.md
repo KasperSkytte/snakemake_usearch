@@ -9,7 +9,7 @@ The configuration file `config.yaml` is used to set various options used through
 | `log_dir` | `"logs"` | Folder for logs for each rule. |
 | `db_sintax` | `"/databases/midas/MiDAS5.3_20240320/FLASVs_w_sintax.fa"` | Path to the taxonomic reference database used to classify the ASVs/zOTUs in SINTAX format. |
 | `filtlong_args` | `"--min_length 200 --min_mean_q 90"` | Arguments for the filtlong command used for pre-filtering. To skip filtering altogether set to `"--min_length 1"`. |
-| `max_threads` | `32` | Max number of threads to use for any individual rule. |
+| `max_threads` | `32` | Max number of threads to use for any individual rule. Ensure this is a factor of the `--cores` value specified when running the workflow to avoid waste. |
 | `sample_sep` | `"_"` | Separator used for the `usearch -otutab` and `fastx_relabel` commands. |
 | `cutadapt_args` | `"-g AGRGTTYGATYMTGGCTCAG...GTTTGGCACCTCGATGTCG --revcomp --discard-untrimmed"` | Options passed on to `cutadapt` directly. Input, output, and threads are added automatically. This is required for trimming and orienting reads correctly. |
 | `derep_minsize` | `2` | Minimum abundance of each read. This is only to speed up ASV/zOTU generation, it will not impact abundance estimation. |

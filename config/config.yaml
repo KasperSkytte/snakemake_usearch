@@ -7,6 +7,7 @@ log_dir: "logs"
 db_sintax: ".test/db_sintax.fa"
 # to skip filtering altogether set to "--min_length 1"
 filtlong_args: "--min_length 200 --min_mean_q 90"
+# Ensure this is a factor of the `--cores` value specified when running the workflow to avoid waste
 max_threads: 32
 sample_sep: "_"
 # options passed on to cutadapt directly. Input, output, and threads are added automatically
