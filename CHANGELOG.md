@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.2.0...v1.2.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* 2 ([17c9bda](https://github.com/KasperSkytte/snakemake_usearch/commit/17c9bdaf874f2ac1547b035b707940b91d249370))
+
 ## [1.2.0](https://github.com/KasperSkytte/snakemake_usearch/compare/v1.1.2...v1.2.0) (2025-12-18)
 
 
