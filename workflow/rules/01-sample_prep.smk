@@ -23,37 +23,49 @@ rule sample_prep:
             )
         ),
     output:
-        fastq=temp(
-            os.path.join(
-                config["tmp_dir"], "01-sample_prep", "{sample}", "{sample}.fastq"
+        fastq=touch(
+            temp(
+                os.path.join(
+                    config["tmp_dir"], "01-sample_prep", "{sample}", "{sample}.fastq"
+                )
             )
         ),
-        total_reads_file=temp(
-            os.path.join(config["tmp_dir"], "totalreads", "{sample}_totalreads.csv")
-        ),
-        sample_renamed=temp(
-            os.path.join(
-                config["tmp_dir"],
-                "01-sample_prep",
-                "{sample}",
-                "{sample}_renamed.fastq",
+        total_reads_file=touch(
+            temp(
+                os.path.join(
+                    config["tmp_dir"], "totalreads", "{sample}_totalreads.csv"
+                )
             )
         ),
-        fastq_filtered=temp(
-            os.path.join(
+        sample_renamed=touch(
+            temp(
                 os.path.join(
                     config["tmp_dir"],
                     "01-sample_prep",
                     "{sample}",
-                    "{sample}_filtered_renamed.fastq",
+                    "{sample}_renamed.fastq",
                 )
             )
         ),
-        totalfilteredreads_file=temp(
-            os.path.join(
-                config["tmp_dir"],
-                "totalreads_filtered",
-                "{sample}_totalfilteredreads.csv",
+        fastq_filtered=touch(
+            temp(
+                os.path.join(
+                    os.path.join(
+                        config["tmp_dir"],
+                        "01-sample_prep",
+                        "{sample}",
+                        "{sample}_filtered_renamed.fastq",
+                    )
+                )
+            )
+        ),
+        totalfilteredreads_file=touch(
+            temp(
+                os.path.join(
+                    config["tmp_dir"],
+                    "totalreads_filtered",
+                    "{sample}_totalfilteredreads.csv",
+                )
             )
         ),
     log:
@@ -80,10 +92,10 @@ rule sample_prep:
         # decompress only if compressed, but concatenate regardless
         echo "*** Decompressing and concatenating fastq files"
         gunzip -cdfq {input} > {output.fastq}
-        
-        # calc total number of reads, TODO: count "+" lines instead
+
+        # calc total number of reads
         echo "*** Calculating total number of reads before any filtering"
-        num_reads=$(grep -c '^+$' {output.fastq})
+        num_reads=$(grep -c '^+$' {output.fastq} || true)
         echo "{wildcards.sample},$num_reads" > "{output.total_reads_file}"
 
         echo "*** Renaming reads with sample name"
@@ -97,7 +109,7 @@ rule sample_prep:
 
         # calc total number of reads
         echo "*** Calculating total number of reads after filtering"
-        num_reads=$(grep -c '^+$' {output.fastq_filtered})
+        num_reads=$(grep -c '^+$' {output.fastq_filtered} || true)
         echo "{wildcards.sample},$num_reads" > "{output.totalfilteredreads_file}"
         """
 

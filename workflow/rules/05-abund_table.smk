@@ -65,11 +65,26 @@ rule merge_abund_tables:
         """
             exec &> "{log}"
             set -euxo pipefail
-        
-            # merge abundance tables
-            usearch -otutab_merge \
-                {params.input_csv} \
-                -output "{output}"
+
+            # filter empty tables from the list to avoid usearch fails
+            non_empty_tables=""
+            for table in {input}; do
+                if [ "$(wc -l < "$table")" -gt 1 ]; then
+                    if [ -z "$non_empty_tables" ]; then
+                        non_empty_tables="$table"
+                    else
+                        non_empty_tables="$non_empty_tables,$table"
+                    fi
+                fi
+            done
+
+            # check if we actually have anything left to merge
+            if [ -z "$non_empty_tables" ]; then
+                echo "Error: All abundance tables are empty"
+                exit 1
+            fi
+
+            usearch -otutab_merge "$non_empty_tables" -output "{output}"
         """
 
 
