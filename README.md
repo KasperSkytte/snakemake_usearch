@@ -12,8 +12,8 @@ The following steps are performed in order, see the individual files for additio
 | | `cutadapt` | Trim primers and orient reads using `cutadapt`. Any options can be passed on directly to the `cutadapt` command using the `cutadapt_args` config variable for complete customization of this step. |
 | | `derep` | Dereplicate reads using `usearch -fastx_uniques`. |
 | | `unoise` | Generates ASVs/zOTUs using `usearch -unoise3`. |
-| `04-sintax.smk` | `sintax` | Predict taxonomy of the ASVs/zOTUs using `usearch -sintax`. |
-| `05-abund_table.smk` | `abund_table` | For each sample, estimate ASV/zOTU abundances in each sample by mapping the raw, unfiltered reads against the ASVs/zOTUs using `usearch -otutab`. This is MUCH faster to do in parallel and merge afterwards compared to running a single `usearch -otutab` command, which doesn't scale linearly with more threads. |
+| `03-sintax.smk` | `sintax` | Predict taxonomy of the ASVs/zOTUs using `usearch -sintax`. |
+| `04-abund_table.smk` | `abund_table` | For each sample, estimate ASV/zOTU abundances in each sample by mapping the raw, unfiltered reads against the ASVs/zOTUs using `usearch -otutab`. This is MUCH faster to do in parallel and merge afterwards compared to running a single `usearch -otutab` command, because it doesn't scale linearly with more threads. |
 | | `merge_abund_tables` | Merge all abundance tables into a single table using `usearch -otutab_merge`. |
 | | `rarefy_abund_table` | (optional) Rarefy abundance table using `usearch -otutab_rare`. |
 

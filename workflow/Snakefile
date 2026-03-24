@@ -20,17 +20,10 @@ sample_dirs = [
     and "unclassified" not in sample.lower()
 ]
 
-
-# include: "rules/01-cat_fastq.smk"
-# include: "rules/02-qfilter.smk"
-# concat totalreads files here
-# include: "rules/03-rename_samples.smk"
 include: "rules/01-sample_prep.smk"
 include: "rules/02-denoise.smk"
-# include: "rules/03-rename_known_zotus.smk"
-include: "rules/04-sintax.smk"
-include: "rules/05-abund_table.smk"
-
+include: "rules/03-sintax.smk"
+include: "rules/04-abund_table.smk"
 
 rule all:
     input:
